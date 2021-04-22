@@ -22,8 +22,8 @@ import lombok.EqualsAndHashCode;
  *
  * @author rodrigo
  */
-@EqualsAndHashCode(of="id")
 @Data
+@EqualsAndHashCode(of="id")
 @Entity
 @Table(name = "productos")
 public class Producto implements Serializable{
