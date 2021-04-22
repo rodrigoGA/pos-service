@@ -89,7 +89,6 @@ public class TransaccionService implements Serializable {
         if (lineasAcrear == null || lineasAcrear.isEmpty()) {
             throw new BussinessException(new BussinessMessage(ExceptionConstants.ERROR_CAMPO, "Datos vacios"));
         }
-
         for (CreateTransaccionLineaDTO item : lineasAcrear) {
             if (item.getTotal() == null || item.getTotal() < 0) {
                 throw new BussinessException(new BussinessMessage(ExceptionConstants.ERROR_CAMPO, "El total de un producto no puede ser menor a 0"));
@@ -99,16 +98,16 @@ public class TransaccionService implements Serializable {
             }
         }
 
-        
         //se hace lock a nivel de base para tener control sobre el inventario, y el numerador de transacciones
         Numerador numerador = numeradorRepository
                 .findByCodigo("NUMERADOR_TRANSACCION")
                 .orElseThrow(() -> new BussinessException(new BussinessMessage(ExceptionConstants.ERROR_NUMERADOR, "Falta iniciar el numerador de transaccion")));
 
+        
         Transaccion t = new Transaccion();
         t.setFecha(new Date());
         t.setLienas(new LinkedList());
-
+        
         for (CreateTransaccionLineaDTO item : lineasAcrear) {
             List<Stock> resultStock = stockRespository.findStockByProduct(item.getProductoId());
             if (resultStock.size() != 1) {
@@ -128,9 +127,10 @@ public class TransaccionService implements Serializable {
             t.getLienas().add(linea);
         }
 
+        
         t.setNumero(numerador.getSiguienteNumero());
         numerador.setSiguienteNumero(numerador.getSiguienteNumero() + 1);
-
+        
         return transaccionRespository.save(t);
     }
 

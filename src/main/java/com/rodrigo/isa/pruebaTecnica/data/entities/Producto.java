@@ -15,12 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
 /**
  *
  * @author rodrigo
  */
+@EqualsAndHashCode(of="id")
 @Data
 @Entity
 @Table(name = "productos")
