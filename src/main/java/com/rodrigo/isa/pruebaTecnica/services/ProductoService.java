@@ -115,6 +115,7 @@ public class ProductoService implements Serializable {
 
         Stock s = stockList.get(0);
         s.setCantidad(p.getStock().getCantidad());
+        p.setStock(s);
 
                 
         
