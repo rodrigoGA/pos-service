@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!-- creacion de la base -->     
+    <changeSet author="rodrigo" id="1619058494883-1">
+        <createTable tableName="lineas">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="total" type="INT"/>
+            <column name="producto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaccion_numero" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="rodrigo" id="1619058494883-2">
+        <createTable tableName="numeradores">
+            <column name="codigo" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="siguiente_numero" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="rodrigo" id="1619058494883-3">
+        <createTable tableName="productos">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="codigo" type="VARCHAR(255)"/>
+            <column name="descripcion" type="VARCHAR(255)"/>
+            <column name="precio_unitario" type="DECIMAL(14, 2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="rodrigo" id="1619058494883-4">
+        <createTable tableName="requests_logs">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="body" type="TEXT"/>
+            <column name="fecha" type="datetime"/>
+            <column name="ok" type="BIT(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="rodrigo" id="1619058494883-5">
+        <createTable tableName="stocks">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="cantidad" type="INT"/>
+            <column name="producto_id" type="BIGINT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="rodrigo" id="1619058494883-6">
+        <createTable tableName="transaciones">
+            <column name="numero" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="fecha" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="rodrigo" id="1619058494883-7">
+        <createIndex indexName="fk_lieas_transacciones" tableName="lineas">
+            <column name="transaccion_numero"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="rodrigo" id="1619058494883-8">
+        <createIndex indexName="fk_lienas_productos" tableName="lineas">
+            <column name="producto_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

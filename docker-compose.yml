@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  pos-db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: pos_db
+      MYSQL_USER: pos
+      MYSQL_PASSWORD: pos
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - integracion  
+
+  pos-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" 
+    depends_on: 
+      - pos-db 
+    environment: 
+      POS_DATASOURCE_HOST: pos-db
+      POS_DATASOURCE_PORT: 3306
+      POS_DATASOURCE_DBNAME: pos_db
+      POS_DATASOURCE_USERNAME: pos
+      POS_DATASOURCE_PASSWORD: pos
+      # poner en null para solo inicializar estructura de la base sin datos.
+      POS_LIQUIBASE_LABELS: inicializar-datos
+    networks: 
+      - integracion
+  
+volumes:
+  db-data:
+
+networks:
+  integracion:

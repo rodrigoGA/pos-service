@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="rodrigo"  id="002-1">        
+        <insert tableName="numeradores">
+            <column name="codigo" value="NUMERADOR_TRANSACCION"/>
+            <column name="siguiente_numero" valueNumeric="1"/>
+        </insert>    
+    </changeSet>
+    
+    <changeSet author="rodrigo"  id="002-2" labels="inicializar-datos" >        
+        <insert tableName="productos">
+            <column name="codigo" value="659712"/>
+            <column name="descripcion" value="Pan Integral Los Sorchantes Familiar 650Gr"/>
+            <column name="precio_unitario" valueNumeric="111"/>
+        </insert>      
+        <insert tableName="stocks">
+            <column name="producto_id" valueComputed="(SELECT id from productos where codigo='659712')"/>
+            <column name="cantidad" valueNumeric="10"/>
+        </insert>       
+        
+        
+        <insert tableName="productos">
+            <column name="codigo" value="838342"/>
+            <column name="descripcion" value="Desodorante Ambiental Aerosol Bebe Lysoform 360Cc"/>
+            <column name="precio_unitario" valueNumeric="149"/>
+        </insert>  
+        <insert tableName="stocks">
+            <column name="producto_id" valueComputed="(SELECT id from productos where codigo='838342')"/>
+            <column name="cantidad" valueNumeric="10"/>
+        </insert>       
+        
+        
+        <insert tableName="productos">
+            <column name="codigo" value="137023"/>
+            <column name="descripcion" value="Ravioles Jamon Y Queso Avanti Al Vacio 500 Gr"/>
+            <column name="precio_unitario" valueNumeric="154"/>
+        </insert>  
+        <insert tableName="stocks">
+            <column name="producto_id" valueComputed="(SELECT id from productos where codigo='137023')"/>
+            <column name="cantidad" valueNumeric="10"/>
+        </insert>      
+        
+        
+        <insert tableName="productos">
+            <column name="codigo" value="203045"/>
+            <column name="descripcion" value="Cerveza Grolsch 450.00 Ml"/>
+            <column name="precio_unitario" valueNumeric="124"/>
+        </insert>  
+        <insert tableName="stocks">
+            <column name="producto_id" valueComputed="(SELECT id from productos where codigo='203045')"/>
+            <column name="cantidad" valueNumeric="10"/>
+        </insert>     
+        
+        <insert tableName="productos">
+            <column name="codigo" value="933328"/>
+            <column name="descripcion" value="Cerveza Imperial Long Neck 500 Ml"/>
+            <column name="precio_unitario" valueNumeric="57"/>
+        </insert>  
+        <insert tableName="stocks">
+            <column name="producto_id" valueComputed="(SELECT id from productos where codigo='933328')"/>
+            <column name="cantidad" valueNumeric="10"/>
+        </insert>       
+        
+        
+        <insert tableName="productos">
+            <column name="codigo" value="937925"/>
+            <column name="descripcion" value="Juguete De Peluche Para Mascota"/>
+            <column name="precio_unitario" valueNumeric="127"/>
+        </insert>  
+        <insert tableName="stocks">
+            <column name="producto_id" valueComputed="(SELECT id from productos where codigo='937925')"/>
+            <column name="cantidad" valueNumeric="10"/>
+        </insert>    
+        
+    </changeSet>
+   
+    
+    
+</databaseChangeLog>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>CUSTOM-package</actionName>
+        <displayName>package</displayName>
+        <goals>
+            <goal>package</goal>
+            
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-correr-en-compose</actionName>
+        <displayName>correr-en-compose</displayName>
+        <goals>
+            <goal>package</goal>
+            <goal>exec:exec@recreate-docker</goal>
+        </goals>
+    </action>
+</actions>
