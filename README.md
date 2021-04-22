@@ -3,21 +3,21 @@
 Se realizaron srevicios REST con springboot para cumplir con las propuesta de la evaluación técnica
 
 ## Consideraciones a tener en cuenta
-* Se probe un archivo docker-compose para ejecutar la aplicación.
+* Se probee un archivo docker-compose para ejecutar la aplicación.
 * Se utilizó mysql cómo motor de base de datos y H2 para los tests
 * Se está utilizando liquidbase para la inicialización de la base de datos. 
-* Los controles de concurrencia de stock se hacen haciendo un bloqueo del numerador a nivel de base. De esta forma se probee una solución en la que se pueden escalar distitnas instancias de la aplicación sin que se conozcan.
-* Según la descripción del problema sobre la auditoría parece que se quiere realizar más un un Log de llamdadas que una auditoría de la aplicación. Entiendo que la idea era ver cómo solucionaba el problema de trabajar con distintas transacciones. Suponiendo esto lo que se hizo fue guardar el body plano de cada request al crear una transaccion.
+* Los controles de concurrencia de stock se hacen bloqueando el numerador a nivel de base. De esta forma se probee una solución en la que se pueden escalar distitnas instancias de la aplicación sin que se conozcan.
+* Según la descripción del problema sobre la auditoría parece que se quiere realizar más un un log de llamdadas que una auditoría de la aplicación. Entiendo que la idea era ver cómo solucionaba el problema de trabajar con distintas transacciones. Suponiendo esto lo que se hizo fue guardar el body plano de cada request al llegar una vetna.
 De no ser así me gustaría conocer más sobre el problema para birndar una mejor solución.
-* Se hizo stock y producto cómo entidades distitnas porque el modelo del problema así lo planteaba. Pero entiendo que solo puede existir una isntancia de stock por producto. A la hora de crear el servicio de Productos el stock se trabajó cómo parte del producto.
+* Se hizo stock y producto cómo entidades distitnas porque el modelo del problema así lo planteaba. Pero entiendo que solo puede existir una instancia de stock por producto. A la hora de crear el servicio de Productos el stock se trabajó cómo parte del producto.
 * Es un proyecto muy simple, con una arquitectura en capas. Creo que para este problema utilizar algo más complejo cómo arquitectura hexagonal hubiese significado hacer una sobreingeniería
 
 ## Suposiciones
 Se hicieron las siguientes suposiciones a la hora del desarrollo:
-* La fecha al crear una  transaccion se se toma como la actual, no es un parámetro del servicio
+* La fecha al crear una  transacción se se toma como la actual, no es un parámetro del servicio
 * No hay servicio de editar transacción, ni de eliminar. No sé si son necesarios.
 * Cada vez que se crea un producto se inicializa con stock 10
-*  No hay operaciones de delete, en caso de querer agregarlas debería ser delete lógico para no eliminar transacciones
+* No hay operaciones de delete en ningún servicio, en caso de agregarlas en producto deberían ser delete lógico
 
 
 ## Cómo ejecutar el proyecto
